@@ -3,6 +3,7 @@
   "version": "0.5.0",
   "description": "Parse XSD durations to seconds",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": {
     "name": "Mick Dekkers",
     "email": "mickdekkersnl@gmail.com",
