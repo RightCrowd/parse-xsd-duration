@@ -279,7 +279,8 @@ const testDataForObjects = {
 
 test('valid values should be parsed correctly', t => {
   testData.valid.forEach(({ input, expected }) => {
-    t.true(pxd(input) === expected)
+    let result = pxd(input);
+    t.true(result === expected, `expected input ${input} to result in ${expected} instead got ${result}`)
   })
 })
 

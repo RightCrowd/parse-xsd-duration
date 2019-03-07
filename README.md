@@ -7,7 +7,7 @@ Parse XSD durations to seconds (by default) or to object
 $ npm install parse-xsd-duration
 ```
 
-This package has zero dependencies and is provided in [UMD format][umd] so you can easily use it in the browser.
+This package has zero dependencies and is provided in the amd format so you can easily use it in the browser.
 
 ## Usage
 
