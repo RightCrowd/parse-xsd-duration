@@ -1,5 +1,5 @@
 import test from 'ava'
-import pxd from '../dist/index'
+import { Parse, TotalSeconds } from '../dist/index'
 
 /**
  * ISO 8601
@@ -266,7 +266,6 @@ const testDataForObjects = {
   ],
   invalid: [
     'P-20M',
-    'P20MT',
     'P1YM5D',
     'P15.5Y',
     'P1D2H',
@@ -279,20 +278,20 @@ const testDataForObjects = {
 
 test('valid values should be parsed correctly', t => {
   testData.valid.forEach(({ input, expected }) => {
-    let result = pxd(input);
+    let result = TotalSeconds(input);
     t.true(result === expected, `expected input ${input} to result in ${expected} instead got ${result}`)
   })
 })
 
 test('invalid values should return null', t => {
   testData.invalid.forEach(input => {
-    t.true(pxd(input) === null)
+    t.true(TotalSeconds(input) === null)
   })
 })
 
 test('valid values should be parsed correctly for object', t => {
   testDataForObjects.valid.forEach(({ input, expected }) => {
-    let resultObject = pxd(input, true)
+    let resultObject = Parse(input)
     units.forEach(unit => {
       t.true(resultObject[unit] === expected[unit])
     })
@@ -301,21 +300,21 @@ test('valid values should be parsed correctly for object', t => {
 
 test('invalid values should return null for object', t => {
   testDataForObjects.invalid.forEach(input => {
-    t.true(pxd(input, true) === null)
+    t.true(Parse(input).totalSeconds === 0)
   })
 })
 
 test('non-string arguments should throw TypeError', t => {
   t.throws(() => {
-    pxd(42)
+    TotalSeconds(42)
   }, TypeError)
   t.throws(() => {
-    pxd(true)
+    TotalSeconds(true)
   }, TypeError)
   t.throws(() => {
-    pxd(null)
+    TotalSeconds(null)
   }, TypeError)
   t.throws(() => {
-    pxd(undefined)
+    TotalSeconds(undefined)
   }, TypeError)
 })
